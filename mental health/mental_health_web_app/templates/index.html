@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mental Health Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🧠 Mental Health Assessment</h1>
+    <p id="progress">Question 1 / 50</p>
+
+    <div class="card">
+        <h2 id="question-text">Loading...</h2>
+
+        <div class="buttons">
+            <button onclick="answerQuestion(1)">Yes</button>
+            <button onclick="answerQuestion(0)">No</button>
+        </div>
+    </div>
+
+    <div class="progress-bar">
+        <div id="progress-fill"></div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

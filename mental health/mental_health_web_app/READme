@@ -1,0 +1,15 @@
+mental_health_app/
+│
+├── app.py
+├── model/
+│   └── model.pkl        # your trained ML model
+│
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── script.js
+│
+├── templates/
+│   ├── index.html
+│   └── result.html

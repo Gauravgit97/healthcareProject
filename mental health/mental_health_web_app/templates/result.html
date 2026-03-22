@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mental Health Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .result-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            width: 500px;
+            margin: auto;
+        }
+
+        .stage {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .tips {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .tips li {
+            margin: 8px 0;
+        }
+
+        .home-btn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #ffdd57;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="result-card">
+            <h1>🧠 Your Mental Health Result</h1>
+
+            <h2 id="result-text"></h2>
+            <h3 id="confidence-text"></h3>
+
+            <ul id="tips-list" class="tips"></ul>
+
+            <button class="home-btn" onclick="goHome()">⬅ Back to Home</button>
+        </div>
+        
+    </div>
+
+    <script>
+        const prediction = localStorage.getItem("prediction");
+        const confidence = localStorage.getItem("confidence");
+
+        let resultText = "";
+
+        if (prediction == 1) {
+            resultText = "✅ Mentally Healthy Or Mild Problem.";
+            tips = [
+                "Maintain a healthy routine",
+                "Exercise regularly",
+                "Stay socially connected",
+                "Eat balanced meals",
+                "Get enough sleep",
+                "Practice gratitude",
+                "Keep learning new things",
+                "Avoid excessive stress",
+                "Take breaks from screens",
+                "Stay positive"
+            ];
+        }else if (prediction == 2){
+            resultText = "⚠️ Mental Stress Detected And Moderate Problem.";
+            tips = [
+                "Practice meditation daily",
+                "Limit overthinking",
+                "Talk to close friends",
+                "Reduce workload",
+                "Take short breaks",
+                "Do physical activity",
+                "Avoid negative content",
+                "Write your thoughts",
+                "Improve sleep habits",
+                "Seek guidance if needed"
+            ];
+        }else if (prediction == 3){
+            resultText = "❌ Severe Problem Detected.";
+            tips = [
+                "Consult a mental health professional",
+                "Do not isolate yourself",
+                "Follow a strict sleep schedule",
+                "Practice deep breathing",
+                "Avoid alcohol/smoking",
+                "Talk openly about feelings",
+                "Take professional therapy",
+                "Engage in calming activities",
+                "Reduce social media usage",
+                "Seek immediate help if needed"
+            ];
+        }else {
+            resultText = "Problem In Model Try Again Refresh the Page...";
+        }
+
+        document.getElementById("result-text").innerText = resultText;
+        // -----------------------------
+        // Render Tips
+        // -----------------------------
+        const tipsList = document.getElementById("tips-list");
+        tips.forEach(tip => {
+            const li = document.createElement("li");
+            li.innerText = tip;
+            tipsList.appendChild(li);
+        });
+        
+        document.getElementById("confidence-text").innerText =
+            "Confidence: " + confidence + "%";
+
+        function goHome() {
+            window.location.href = "/";
+        }
+    </script>
+
+</body>
+</html>
