@@ -8,8 +8,9 @@ To build a web-based application that uses a Machine Learning model to assess a 
 ## 🧠 Machine Learning Model
 - Input: 50 binary features (0/1)
 - Output:
-  - 0 → Healthy
-  - 1 → Mental Stress
+  - 1 → Healthy
+  - 2 → Mental Stress
+  -  → Mental sevear Stress
 - Confidence Score using probability
 
 ---
