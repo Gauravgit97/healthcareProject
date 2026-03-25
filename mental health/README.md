@@ -10,7 +10,7 @@ To build a web-based application that uses a Machine Learning model to assess a 
 - Output:
   - 1 → Healthy
   - 2 → Mental Stress
-  -  → Mental sevear Stress
+  - 3 → Mental sevear Stress
 - Confidence Score using probability
 
 ---
@@ -43,11 +43,6 @@ Frontend → Flask Backend → ML Model → Prediction → Result Page
   - Confidence score
   - Chart visualization
   - 10 personalized tips
-
----
-
-## 📊 Visualization
-- Doughnut chart using Chart.js
 
 ---
 
