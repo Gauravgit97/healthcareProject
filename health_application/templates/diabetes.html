@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Diabetes Risk — HealthML{% endblock %}
+
+{% block content %}
+<a href="{% url 'index' %}" class="hml-back">← Back to apps</a>
+
+<div class="hml-panel">
+
+  <div class="hml-panel-header">
+    <div class="hml-panel-icon icon-blue">🩸</div>
+    <div>
+      <div class="hml-panel-title">Diabetes risk assessment</div>
+      <div class="hml-panel-desc">Enter your metabolic health metrics to estimate risk level.</div>
+    </div>
+  </div>
+
+  <div class="hml-form-grid">
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="d-age">Age</label>
+      <input class="hml-input" type="number" id="d-age" placeholder="e.g. 45" min="1" max="120" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="d-bmi">BMI</label>
+      <input class="hml-input" type="number" id="d-bmi" placeholder="e.g. 27.5" step="0.1" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="d-glucose">Fasting glucose (mg/dL)</label>
+      <input class="hml-input" type="number" id="d-glucose" placeholder="e.g. 95" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="d-hba1c">HbA1c (%)</label>
+      <input class="hml-input" type="number" id="d-hba1c" placeholder="e.g. 5.4" step="0.1" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="d-family">Family history of diabetes</label>
+      <select class="hml-select" id="d-family">
+        <option>No</option>
+        <option>Yes</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="d-activity">Physical activity level</label>
+      <select class="hml-select" id="d-activity">
+        <option>Active</option>
+        <option>Moderately active</option>
+        <option>Sedentary</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="d-diet">Diet type</label>
+      <select class="hml-select" id="d-diet">
+        <option>Balanced</option>
+        <option>High sugar / processed</option>
+        <option>Low carb</option>
+        <option>Vegetarian / Vegan</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="d-weight-change">Recent weight change</label>
+      <select class="hml-select" id="d-weight-change">
+        <option>Stable</option>
+        <option>Gained weight</option>
+        <option>Lost weight</option>
+      </select>
+    </div>
+
+  </div>
+
+  <button class="hml-btn btn-blue" id="btn-diabetes" onclick="predictDiabetes()">
+    Predict diabetes risk
+  </button>
+
+  <div class="hml-loading" id="load-diabetes">
+    <div class="hml-dot" style="background: var(--blue-600);"></div>
+    <div class="hml-dot" style="background: var(--blue-600);"></div>
+    <div class="hml-dot" style="background: var(--blue-600);"></div>
+  </div>
+
+  <div class="hml-result" id="result-diabetes">
+    <div class="hml-result-label">Diabetes risk level</div>
+    <div class="hml-result-score" id="score-diabetes"></div>
+    <div class="hml-result-msg"   id="msg-diabetes"></div>
+  </div>
+
+  <p class="hml-disclaimer">
+    ⚠️ This tool provides AI-generated estimates for informational purposes only.<br>
+    It is not a substitute for professional medical advice. Consult your doctor.
+  </p>
+
+</div>
+{% endblock %}

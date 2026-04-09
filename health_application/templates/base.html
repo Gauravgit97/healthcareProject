@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}HealthML{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/healthml.css' %}" />
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <nav class="hml-navbar">
+    <div class="hml-logo">🏥</div>
+    <span class="hml-brand">Health<span>ML</span></span>
+    <div class="hml-nav-links">
+      <a href="{% url 'index' %}"    class="hml-nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a>
+      <a href="{% url 'general' %}"  class="hml-nav-link {% if request.resolver_match.url_name == 'general' %}active{% endif %}">General</a>
+      <a href="{% url 'diabetes' %}" class="hml-nav-link {% if request.resolver_match.url_name == 'diabetes' %}active{% endif %}">Diabetes</a>
+      <a href="{% url 'heart' %}"    class="hml-nav-link {% if request.resolver_match.url_name == 'heart' %}active{% endif %}">Heart</a>
+    </div>
+  </nav>
+
+  <main class="hml-page">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Pass API key securely from Django settings -->
+  <script>window.ANTHROPIC_API_KEY = "{{ anthropic_api_key }}";</script>
+  <script src="{% static 'js/healthml.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+
+</body>
+</html>

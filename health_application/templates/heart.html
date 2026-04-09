@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Heart Risk — HealthML{% endblock %}
+
+{% block content %}
+<a href="{% url 'index' %}" class="hml-back">← Back to apps</a>
+
+<div class="hml-panel">
+
+  <div class="hml-panel-header">
+    <div class="hml-panel-icon icon-amber">❤️</div>
+    <div>
+      <div class="hml-panel-title">Heart risk assessment</div>
+      <div class="hml-panel-desc">Cardiovascular health prediction based on your vitals.</div>
+    </div>
+  </div>
+
+  <div class="hml-form-grid">
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="h-age">Age</label>
+      <input class="hml-input" type="number" id="h-age" placeholder="e.g. 55" min="1" max="120" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="h-gender">Gender</label>
+      <select class="hml-select" id="h-gender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="h-bp">Systolic BP (mmHg)</label>
+      <input class="hml-input" type="number" id="h-bp" placeholder="e.g. 120" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="h-chol">Cholesterol (mg/dL)</label>
+      <input class="hml-input" type="number" id="h-chol" placeholder="e.g. 200" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="h-hr">Resting heart rate (bpm)</label>
+      <input class="hml-input" type="number" id="h-hr" placeholder="e.g. 72" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="h-smoke">Smoking</label>
+      <select class="hml-select" id="h-smoke">
+        <option>No</option>
+        <option>Occasionally</option>
+        <option>Daily</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="h-chest">Chest pain history</label>
+      <select class="hml-select" id="h-chest">
+        <option>None</option>
+        <option>Occasional</option>
+        <option>Frequent</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="h-diabetes">Diabetic</label>
+      <select class="hml-select" id="h-diabetes">
+        <option>No</option>
+        <option>Yes</option>
+        <option>Pre-diabetic</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group full">
+      <label class="hml-label" for="h-exercise">Exercise frequency</label>
+      <select class="hml-select" id="h-exercise">
+        <option>Daily</option>
+        <option>3–5 times/week</option>
+        <option>1–2 times/week</option>
+        <option>Rarely or never</option>
+      </select>
+    </div>
+
+  </div>
+
+  <button class="hml-btn btn-amber" id="btn-heart" onclick="predictHeart()">
+    Predict heart risk
+  </button>
+
+  <div class="hml-loading" id="load-heart">
+    <div class="hml-dot" style="background: var(--amber-600);"></div>
+    <div class="hml-dot" style="background: var(--amber-600);"></div>
+    <div class="hml-dot" style="background: var(--amber-600);"></div>
+  </div>
+
+  <div class="hml-result" id="result-heart">
+    <div class="hml-result-label">Cardiovascular risk</div>
+    <div class="hml-result-score" id="score-heart"></div>
+    <div class="hml-result-msg"   id="msg-heart"></div>
+  </div>
+
+  <p class="hml-disclaimer">
+    ⚠️ This tool provides AI-generated estimates for informational purposes only.<br>
+    It is not a substitute for professional medical advice. Consult your doctor.
+  </p>
+
+</div>
+{% endblock %}

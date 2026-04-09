@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}HealthML — Dashboard{% endblock %}
+
+{% block content %}
+<div class="hml-page-header">
+  <h1 class="hml-page-title">Health Prediction Apps</h1>
+  <p class="hml-page-subtitle">Choose an application below. Each uses a separate ML model.</p>
+</div>
+
+<div class="hml-apps-grid">
+
+  <a href="{% url 'general' %}" class="hml-app-card">
+    <div class="hml-app-card-icon icon-green">🫀</div>
+    <div class="hml-app-card-name">General Health</div>
+    <div class="hml-app-card-desc">
+      Overall wellness score based on lifestyle, BMI, sleep, diet, stress, and exercise habits.
+    </div>
+    <span class="hml-badge badge-green">Wellness Model</span>
+  </a>
+
+  <a href="{% url 'diabetes' %}" class="hml-app-card">
+    <div class="hml-app-card-icon icon-blue">🩸</div>
+    <div class="hml-app-card-name">Diabetes Risk</div>
+    <div class="hml-app-card-desc">
+      Estimates diabetes risk using glucose levels, HbA1c, BMI, and family history.
+    </div>
+    <span class="hml-badge badge-blue">Risk Model</span>
+  </a>
+
+  <a href="{% url 'heart' %}" class="hml-app-card">
+    <div class="hml-app-card-icon icon-amber">❤️</div>
+    <div class="hml-app-card-name">Heart Risk</div>
+    <div class="hml-app-card-desc">
+      Cardiovascular risk assessment based on blood pressure, cholesterol, and vitals.
+    </div>
+    <span class="hml-badge badge-amber">Risk Model</span>
+  </a>
+
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}General Health — HealthML{% endblock %}
+
+{% block content %}
+<a href="{% url 'index' %}" class="hml-back">← Back to apps</a>
+
+<div class="hml-panel">
+
+  <div class="hml-panel-header">
+    <div class="hml-panel-icon icon-green">🫀</div>
+    <div>
+      <div class="hml-panel-title">General health assessment</div>
+      <div class="hml-panel-desc">Fill in your details to get a personalised wellness score.</div>
+    </div>
+  </div>
+
+  <div class="hml-form-grid">
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="age">Age</label>
+      <input class="hml-input" type="number" id="age" placeholder="e.g. 35" min="1" max="120" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="gender">Gender</label>
+      <select class="hml-select" id="gender">
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="height">Height (cm)</label>
+      <input class="hml-input" type="number" id="height" placeholder="e.g. 170" />
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="weight">Weight (kg)</label>
+      <input class="hml-input" type="number" id="weight" placeholder="e.g. 70" />
+    </div>
+
+    <div class="hml-form-group full">
+      <label class="hml-label">Exercise frequency</label>
+      <div class="hml-slider-wrap">
+        <input class="hml-slider" type="range" id="exercise" min="0" max="7" step="1" value="3" />
+        <span class="hml-slider-val" id="ex-val">3 days/week</span>
+      </div>
+    </div>
+
+    <div class="hml-form-group full">
+      <label class="hml-label">Sleep duration</label>
+      <div class="hml-slider-wrap">
+        <input class="hml-slider" type="range" id="sleep" min="3" max="12" step="0.5" value="7" />
+        <span class="hml-slider-val" id="sl-val">7 hrs/night</span>
+      </div>
+    </div>
+
+    <div class="hml-form-group full">
+      <label class="hml-label">Stress level</label>
+      <div class="hml-slider-wrap">
+        <input class="hml-slider" type="range" id="stress" min="1" max="10" step="1" value="5" />
+        <span class="hml-slider-val" id="st-val">5 / 10</span>
+      </div>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="smoking">Smoking</label>
+      <select class="hml-select" id="smoking">
+        <option>No</option>
+        <option>Occasionally</option>
+        <option>Daily</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group">
+      <label class="hml-label" for="diet">Diet quality</label>
+      <select class="hml-select" id="diet">
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Poor</option>
+      </select>
+    </div>
+
+    <div class="hml-form-group full">
+      <label class="hml-label" for="water">Daily water intake</label>
+      <select class="hml-select" id="water">
+        <option>8+ glasses</option>
+        <option>5–7 glasses</option>
+        <option>Less than 5 glasses</option>
+      </select>
+    </div>
+
+  </div>
+
+  <button class="hml-btn btn-green" id="btn-general" onclick="predictGeneral()">
+    Predict my health score
+  </button>
+
+  <div class="hml-loading" id="load-general">
+    <div class="hml-dot"></div>
+    <div class="hml-dot"></div>
+    <div class="hml-dot"></div>
+  </div>
+
+  <div class="hml-result" id="result-general">
+    <div class="hml-result-label">Your health score</div>
+    <div class="hml-result-score" id="score-general"></div>
+    <div class="hml-result-msg"   id="msg-general"></div>
+  </div>
+
+  <p class="hml-disclaimer">
+    ⚠️ This tool provides AI-generated estimates for informational purposes only.<br>
+    It is not a substitute for professional medical advice.
+  </p>
+
+</div>
+{% endblock %}
