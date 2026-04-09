@@ -3,6 +3,9 @@ from django.http import HttpResponse,JsonResponse
 
 
 # Create your views here.
+def home_page(request):
+    return render(request,'index.html')
+
 def index(request):
     return render(request=request,template_name='index.html')
 
